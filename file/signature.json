@@ -1,0 +1,21 @@
+{
+	"threat_name" : "EICAR-START", 
+	"first_bytes" : "$EICAR-S", 
+	"remainder_hash" : "1d53da4a390082b0c0d10c37162905e0", 
+	"remainder_length" : 28, 
+	"file_type" : "test", 
+	"offset_start" : 0, 
+	"offset_end" : 36, 
+	"status" : "ACTUAL"
+}
+
+{
+	"threat_name" : "EICAR-Test-Signature", 
+	"first_bytes" : "X5O!P%@", 
+	"remainder_hash" : "44d88612fea8a8f36de82e1278abb02f", 
+	"remainder_length" : 68, 
+	"file_type" : "test", 
+	"offset_start" : 0, 
+	"offset_end" : 80, 
+	"status" : "ACTUAL"
+}

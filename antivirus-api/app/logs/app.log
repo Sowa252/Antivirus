@@ -1,0 +1,365 @@
+2025-04-14 14:43:48,847 - __main__ - INFO - Проверка и создание базы данных...
+2025-04-14 14:43:48,922 - __main__ - INFO - Инициализация подключения к базе...
+2025-04-14 14:43:48,991 - __main__ - INFO - Создание таблиц...
+2025-04-14 14:43:49,113 - __main__ - INFO - База данных готова!
+2025-04-14 14:46:51,916 - __main__ - INFO - Starting file upload. Filename: file.txt
+2025-04-14 14:46:51,918 - __main__ - INFO - Temporary file saved. Size: 145 bytes
+2025-04-14 14:46:51,987 - __main__ - INFO - File successfully processed. UUID: ad4e9707-4d95-4c82-ac1b-a5db173bc7c5
+2025-04-14 14:48:08,990 - __main__ - INFO - Starting file upload. Filename: file2.txt
+2025-04-14 14:48:08,994 - __main__ - INFO - Temporary file saved. Size: 80 bytes
+2025-04-14 14:48:09,001 - __main__ - INFO - File successfully processed. UUID: a1b22778-a66a-4625-88dc-15029b3e32bb
+2025-04-14 14:49:03,846 - __main__ - INFO - Starting file upload. Filename: file4.txt
+2025-04-14 14:49:03,851 - __main__ - INFO - Temporary file saved. Size: 36 bytes
+2025-04-14 14:49:03,886 - __main__ - INFO - File successfully processed. UUID: c82cb2ea-cfd4-4d78-aa04-67137f463e63
+2025-04-14 14:49:20,616 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 14:49:20,624 - __main__ - INFO - Successfully retrieved 10 files from database
+2025-04-14 14:51:24,568 - __main__ - INFO - Проверка и создание базы данных...
+2025-04-14 14:51:24,609 - __main__ - ERROR - Ошибка при создании базы данных
+2025-04-14 14:51:24,609 - __main__ - CRITICAL - Ошибка инициализации базы: Не удалось создать базу данных
+Traceback (most recent call last):
+  File "C:\Users\Admin\antivirus\antivirus\antivirus-api\app\main.py", line 49, in startup_event
+    raise RuntimeError("Не удалось создать базу данных")
+RuntimeError: Не удалось создать базу данных
+2025-04-14 14:52:31,382 - __main__ - INFO - Проверка и создание базы данных...
+2025-04-14 14:52:31,424 - __main__ - ERROR - Ошибка при создании базы данных
+2025-04-14 14:52:31,425 - __main__ - CRITICAL - Ошибка инициализации базы: Не удалось создать базу данных
+Traceback (most recent call last):
+  File "C:\Users\Admin\antivirus\antivirus\antivirus-api\app\main.py", line 49, in startup_event
+    raise RuntimeError("Не удалось создать базу данных")
+RuntimeError: Не удалось создать базу данных
+2025-04-14 14:53:43,649 - __main__ - INFO - Проверка и создание базы данных...
+2025-04-14 14:53:43,719 - __main__ - INFO - Инициализация подключения к базе...
+2025-04-14 14:53:43,771 - __main__ - INFO - Создание таблиц...
+2025-04-14 14:53:43,912 - __main__ - INFO - База данных готова!
+2025-04-14 14:54:54,406 - __main__ - INFO - Request received for file info. File ID: c82cb2ea-cfd4-4d78-aa04-67137f463e63
+2025-04-14 14:54:54,413 - __main__ - INFO - Successfully retrieved file info. File: file4.txt, Size: 36 bytes
+2025-04-14 14:55:39,787 - __main__ - INFO - Starting file deletion process. File ID: ad4e9707-4d95-4c82-ac1b-a5db173bc7c5
+2025-04-14 14:55:39,799 - __main__ - INFO - Successfully deleted file. Deleted File ID: ad4e9707-4d95-4c82-ac1b-a5db173bc7c5
+2025-04-14 14:58:18,720 - __main__ - INFO - Processing signature operation. Data: {'threat_name': 'EICAR-START', 'first_bytes': '$EICAR-S', 'remainder_hash': '1d53da4a390082b0c0d10c37162905e0', 'remainder_length': 28, 'file_type': 'test', 'offset_start': 0, 'offset_end': 36, 'status': 'DELETED'}
+2025-04-14 14:58:18,769 - __main__ - INFO - Successfully processed signature. ID: 9a523f7e-ea43-462d-9ecb-2b4e68760ad2
+2025-04-14 14:59:24,675 - __main__ - INFO - Processing signature operation. Data: {'id': '9a523f7e-ea43-462d-9ecb-2b4e68760ad2', 'status': 'INSERTED'}
+2025-04-14 14:59:24,686 - __main__ - ERROR - Database error: Database error: (psycopg2.errors.UndefinedColumn) ОШИБКА:  столбец "id" в таблице "history" не существует
+LINE 1: INSERT INTO antivirus.history (id, threat_name, first_bytes,...
+                                       ^
+QUERY:  INSERT INTO antivirus.history (id, threat_name, first_bytes, remainder_hash, remainder_length, file_type
+                                        , offset_start, offset_end, digital_signature, status, updated_at, version_created_at)
+                SELECT OLD.id, OLD.threat_name, OLD.first_bytes, OLD.remainder_hash, OLD.remainder_length, OLD.file_type
+                     , OLD.offset_start, OLD.offset_end, OLD.digital_signature, OLD.status, OLD.updated_at, OLD.updated_at
+CONTEXT:  функция PL/pgSQL antivirus.trf_signatures_history_biud(), строка 33, оператор SQL-оператор
+SQL-оператор: "
+                    UPDATE ONLY antivirus.signatures SET
+                        threat_name = COALESCE(NULL, threat_name),
+                        first_bytes = COALESCE(NULL, first_bytes),
+                        remainder_hash = COALESCE(NULL, remainder_hash),
+                        remainder_length = COALESCE(NULL, remainder_length),
+                        file_type = COALESCE(NULL, file_type),
+                        offset_start = COALESCE(NULL, offset_start),
+                        offset_end = COALESCE(NULL, offset_end),
+                        status = COALESCE('INSERTED', status),
+                        updated_at = NOW()
+                    WHERE id = '9a523f7e-ea43-462d-9ecb-2b4e68760ad2'
+                    RETURNING id"
+функция PL/pgSQL antivirus.signatures_iud(json), строка 82, оператор EXECUTE
+
+[SQL: 
+            SELECT antivirus.signatures_iud(%(json_data)s) AS signature_id
+        ]
+[parameters: {'json_data': '{"id": "9a523f7e-ea43-462d-9ecb-2b4e68760ad2", "status": "INSERTED"}'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: ОШИБКА:  столбец "id" в таблице "history" не существует
+LINE 1: INSERT INTO antivirus.history (id, threat_name, first_bytes,...
+                                       ^
+QUERY:  INSERT INTO antivirus.history (id, threat_name, first_bytes, remainder_hash, remainder_length, file_type
+                                        , offset_start, offset_end, digital_signature, status, updated_at, version_created_at)
+                SELECT OLD.id, OLD.threat_name, OLD.first_bytes, OLD.remainder_hash, OLD.remainder_length, OLD.file_type
+                     , OLD.offset_start, OLD.offset_end, OLD.digital_signature, OLD.status, OLD.updated_at, OLD.updated_at
+CONTEXT:  функция PL/pgSQL antivirus.trf_signatures_history_biud(), строка 33, оператор SQL-оператор
+SQL-оператор: "
+                    UPDATE ONLY antivirus.signatures SET
+                        threat_name = COALESCE(NULL, threat_name),
+                        first_bytes = COALESCE(NULL, first_bytes),
+                        remainder_hash = COALESCE(NULL, remainder_hash),
+                        remainder_length = COALESCE(NULL, remainder_length),
+                        file_type = COALESCE(NULL, file_type),
+                        offset_start = COALESCE(NULL, offset_start),
+                        offset_end = COALESCE(NULL, offset_end),
+                        status = COALESCE('INSERTED', status),
+                        updated_at = NOW()
+                    WHERE id = '9a523f7e-ea43-462d-9ecb-2b4e68760ad2'
+                    RETURNING id"
+функция PL/pgSQL antivirus.signatures_iud(json), строка 82, оператор EXECUTE
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\antivirus\antivirus\antivirus-api\app\dbengine.py", line 222, in call_signatures_iud_function
+    result = db.execute(query, {"json_data": json_data})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\orm\session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\sqlalchemy\engine\default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) ОШИБКА:  столбец "id" в таблице "history" не существует
+LINE 1: INSERT INTO antivirus.history (id, threat_name, first_bytes,...
+                                       ^
+QUERY:  INSERT INTO antivirus.history (id, threat_name, first_bytes, remainder_hash, remainder_length, file_type
+                                        , offset_start, offset_end, digital_signature, status, updated_at, version_created_at)
+                SELECT OLD.id, OLD.threat_name, OLD.first_bytes, OLD.remainder_hash, OLD.remainder_length, OLD.file_type
+                     , OLD.offset_start, OLD.offset_end, OLD.digital_signature, OLD.status, OLD.updated_at, OLD.updated_at
+CONTEXT:  функция PL/pgSQL antivirus.trf_signatures_history_biud(), строка 33, оператор SQL-оператор
+SQL-оператор: "
+                    UPDATE ONLY antivirus.signatures SET
+                        threat_name = COALESCE(NULL, threat_name),
+                        first_bytes = COALESCE(NULL, first_bytes),
+                        remainder_hash = COALESCE(NULL, remainder_hash),
+                        remainder_length = COALESCE(NULL, remainder_length),
+                        file_type = COALESCE(NULL, file_type),
+                        offset_start = COALESCE(NULL, offset_start),
+                        offset_end = COALESCE(NULL, offset_end),
+                        status = COALESCE('INSERTED', status),
+                        updated_at = NOW()
+                    WHERE id = '9a523f7e-ea43-462d-9ecb-2b4e68760ad2'
+                    RETURNING id"
+функция PL/pgSQL antivirus.signatures_iud(json), строка 82, оператор EXECUTE
+
+[SQL: 
+            SELECT antivirus.signatures_iud(%(json_data)s) AS signature_id
+        ]
+[parameters: {'json_data': '{"id": "9a523f7e-ea43-462d-9ecb-2b4e68760ad2", "status": "INSERTED"}'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\antivirus\antivirus\antivirus-api\app\main.py", line 229, in manage_signature
+    signature_id = call_signatures_iud_function(signature_data)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\antivirus\antivirus\antivirus-api\app\dbengine.py", line 232, in call_signatures_iud_function
+    raise SQLAlchemyError(f"Database error: {e}")
+sqlalchemy.exc.SQLAlchemyError: Database error: (psycopg2.errors.UndefinedColumn) ОШИБКА:  столбец "id" в таблице "history" не существует
+LINE 1: INSERT INTO antivirus.history (id, threat_name, first_bytes,...
+                                       ^
+QUERY:  INSERT INTO antivirus.history (id, threat_name, first_bytes, remainder_hash, remainder_length, file_type
+                                        , offset_start, offset_end, digital_signature, status, updated_at, version_created_at)
+                SELECT OLD.id, OLD.threat_name, OLD.first_bytes, OLD.remainder_hash, OLD.remainder_length, OLD.file_type
+                     , OLD.offset_start, OLD.offset_end, OLD.digital_signature, OLD.status, OLD.updated_at, OLD.updated_at
+CONTEXT:  функция PL/pgSQL antivirus.trf_signatures_history_biud(), строка 33, оператор SQL-оператор
+SQL-оператор: "
+                    UPDATE ONLY antivirus.signatures SET
+                        threat_name = COALESCE(NULL, threat_name),
+                        first_bytes = COALESCE(NULL, first_bytes),
+                        remainder_hash = COALESCE(NULL, remainder_hash),
+                        remainder_length = COALESCE(NULL, remainder_length),
+                        file_type = COALESCE(NULL, file_type),
+                        offset_start = COALESCE(NULL, offset_start),
+                        offset_end = COALESCE(NULL, offset_end),
+                        status = COALESCE('INSERTED', status),
+                        updated_at = NOW()
+                    WHERE id = '9a523f7e-ea43-462d-9ecb-2b4e68760ad2'
+                    RETURNING id"
+функция PL/pgSQL antivirus.signatures_iud(json), строка 82, оператор EXECUTE
+
+[SQL: 
+            SELECT antivirus.signatures_iud(%(json_data)s) AS signature_id
+        ]
+[parameters: {'json_data': '{"id": "9a523f7e-ea43-462d-9ecb-2b4e68760ad2", "status": "INSERTED"}'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-04-14 15:33:17,540 - __main__ - INFO - Проверка и создание базы данных...
+2025-04-14 15:33:17,898 - __main__ - INFO - Инициализация подключения к базе...
+2025-04-14 15:33:17,962 - __main__ - INFO - Создание таблиц...
+2025-04-14 15:33:18,041 - __main__ - INFO - База данных готова!
+2025-04-14 15:34:33,639 - __main__ - INFO - Starting file upload. Filename: file4.txt
+2025-04-14 15:34:33,642 - __main__ - INFO - Temporary file saved. Size: 36 bytes
+2025-04-14 15:34:33,651 - __main__ - INFO - File successfully processed. UUID: 276a88fe-39bd-45a9-bf9e-f1d0a4106e81
+2025-04-14 15:34:46,682 - __main__ - INFO - Starting file upload. Filename: file3.txt
+2025-04-14 15:34:46,685 - __main__ - INFO - Temporary file saved. Size: 37 bytes
+2025-04-14 15:34:46,691 - __main__ - INFO - File successfully processed. UUID: a7afa1bc-ec12-493b-b14d-db6915802db2
+2025-04-14 15:34:53,749 - __main__ - INFO - Starting file upload. Filename: file2.txt
+2025-04-14 15:34:53,752 - __main__ - INFO - Temporary file saved. Size: 80 bytes
+2025-04-14 15:34:53,757 - __main__ - INFO - File successfully processed. UUID: 357f6a5a-b537-4498-9473-872c3f0bbe4f
+2025-04-14 15:35:01,528 - __main__ - INFO - Starting file upload. Filename: file1.txt
+2025-04-14 15:35:01,532 - __main__ - INFO - Temporary file saved. Size: 83 bytes
+2025-04-14 15:35:01,536 - __main__ - INFO - File successfully processed. UUID: 7400077f-bb7c-46de-bee5-f17bca40be08
+2025-04-14 15:35:09,348 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 15:35:09,353 - __main__ - INFO - Successfully retrieved 4 files from database
+2025-04-14 15:35:21,787 - __main__ - INFO - Request received for file info. File ID: 7400077f-bb7c-46de-bee5-f17bca40be08
+2025-04-14 15:35:21,790 - __main__ - INFO - Successfully retrieved file info. File: file1.txt, Size: 83 bytes
+2025-04-14 15:35:33,168 - __main__ - INFO - Starting file deletion process. File ID: 7400077f-bb7c-46de-bee5-f17bca40be08
+2025-04-14 15:35:33,174 - __main__ - INFO - Successfully deleted file. Deleted File ID: 7400077f-bb7c-46de-bee5-f17bca40be08
+2025-04-14 15:35:58,388 - __main__ - INFO - Processing signature operation. Data: {'threat_name': 'EICAR-START', 'first_bytes': '$EICAR-S', 'remainder_hash': '1d53da4a390082b0c0d10c37162905e0', 'remainder_length': 28, 'file_type': 'test', 'offset_start': 0, 'offset_end': 36, 'status': 'ACTUAL'}
+2025-04-14 15:35:58,397 - __main__ - INFO - Successfully processed signature. ID: 3bfc313b-6183-4361-a5d8-31777b241be0
+2025-04-14 15:37:07,828 - __main__ - INFO - Processing signature operation. Data: {'threat_name': 'EICAR-Test-Signature', 'first_bytes': 'X5O!P%@', 'remainder_hash': '44d88612fea8a8f36de82e1278abb02f', 'remainder_length': 68, 'file_type': 'test', 'offset_start': 0, 'offset_end': 80, 'status': 'ACTUAL'}
+2025-04-14 15:37:07,834 - __main__ - INFO - Successfully processed signature. ID: b2047e6e-08f5-4699-a454-e7f653d792f7
+2025-04-14 15:38:02,655 - __main__ - INFO - Processing signature operation. Data: {'id': 'b2047e6e-08f5-4699-a454-e7f653d792f7', 'threat_name': 'CAR-Test-Signature'}
+2025-04-14 15:38:02,662 - __main__ - INFO - Successfully processed signature. ID: b2047e6e-08f5-4699-a454-e7f653d792f7
+2025-04-14 15:38:23,454 - __main__ - INFO - Request received for actual signatures. Since filter: None
+2025-04-14 15:38:23,458 - __main__ - INFO - Successfully retrieved 2 actual signatures
+2025-04-14 15:38:34,557 - __main__ - INFO - Request received for actual signatures. Since filter: 2025-04-14T20:00:00
+2025-04-14 15:38:34,561 - __main__ - INFO - No actual signatures found in database
+2025-04-14 15:38:41,329 - __main__ - INFO - Request received for actual signatures. Since filter: 2025-04-13T20:00:00
+2025-04-14 15:38:41,333 - __main__ - INFO - Successfully retrieved 2 actual signatures
+2025-04-14 15:39:06,504 - __main__ - INFO - Request received for signatures by GUIDs. GUIDs count: 1
+2025-04-14 15:39:06,507 - __main__ - INFO - Successfully retrieved 1 signatures by GUIDs
+2025-04-14 15:39:33,143 - __main__ - INFO - Request received for signatures by GUIDs. GUIDs count: 2
+2025-04-14 15:39:33,147 - __main__ - INFO - Successfully retrieved 2 signatures by GUIDs
+2025-04-14 15:39:48,696 - __main__ - INFO - Request received for signatures with status: DELETED
+2025-04-14 15:39:48,702 - __main__ - INFO - Successfully retrieved 0 signatures with status DELETED
+2025-04-14 15:39:52,648 - __main__ - INFO - Request received for signatures with status: ACTUAL
+2025-04-14 15:39:52,651 - __main__ - INFO - Successfully retrieved 2 signatures with status ACTUAL
+2025-04-14 15:40:20,439 - __main__ - INFO - Processing signature operation. Data: {'id': 'b2047e6e-08f5-4699-a454-e7f653d792f7'}
+2025-04-14 15:40:20,442 - __main__ - INFO - Signature deletion requested for ID: b2047e6e-08f5-4699-a454-e7f653d792f7
+2025-04-14 15:40:20,445 - __main__ - INFO - Successfully processed signature. ID: b2047e6e-08f5-4699-a454-e7f653d792f7
+2025-04-14 15:40:42,726 - __main__ - INFO - Request received for signatures with status: ACTUAL
+2025-04-14 15:40:42,730 - __main__ - INFO - Successfully retrieved 1 signatures with status ACTUAL
+2025-04-14 15:40:46,386 - __main__ - INFO - Request received for signatures with status: DELETED
+2025-04-14 15:40:46,389 - __main__ - INFO - Successfully retrieved 1 signatures with status DELETED
+2025-04-14 15:40:59,416 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 15:40:59,419 - __main__ - INFO - Successfully retrieved 3 files from database
+2025-04-14 15:41:15,936 - __main__ - INFO - Starting file scan. File ID: 276a88fe-39bd-45a9-bf9e-f1d0a4106e81, Signature ID: None
+2025-04-14 15:41:15,947 - __main__ - INFO - Scan completed successfully for file 276a88fe-39bd-45a9-bf9e-f1d0a4106e81
+2025-04-14 15:41:31,965 - __main__ - INFO - Request received for signatures with status: ACTUAL
+2025-04-14 15:41:31,969 - __main__ - INFO - Successfully retrieved 1 signatures with status ACTUAL
+2025-04-14 15:41:45,023 - __main__ - INFO - Starting file scan. File ID: 276a88fe-39bd-45a9-bf9e-f1d0a4106e81, Signature ID: 3bfc313b-6183-4361-a5d8-31777b241be0
+2025-04-14 15:41:45,029 - __main__ - INFO - Scan completed successfully for file 276a88fe-39bd-45a9-bf9e-f1d0a4106e81
+2025-04-14 15:58:17,905 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 15:58:17,909 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:01:20,786 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 16:01:20,789 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:02:10,993 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 16:02:10,997 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:02:50,599 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 16:02:50,602 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:03:42,922 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 16:03:42,924 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:05:24,082 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 16:05:24,087 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:05:33,212 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 16:05:33,215 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:06:14,435 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 16:06:14,438 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:06:20,200 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 16:06:20,203 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:06:28,188 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 16:06:28,192 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:07:07,975 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 16:07:07,978 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:07:28,195 - __main__ - INFO - Request received for history. Signature ID: b2047e6e-08f5-4699-a454-e7f653d792f7, Limit: 100
+2025-04-14 16:07:28,198 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:07:33,553 - __main__ - INFO - Request received for history. Signature ID: b2047e6e-08f5-4699-a454-e7f653d792f8, Limit: 100
+2025-04-14 16:07:33,558 - __main__ - INFO - Successfully retrieved 0 history entries
+2025-04-14 16:07:40,220 - __main__ - INFO - Request received for history. Signature ID: b2047e6e-08f5-4699-a454-e7f653d792f7, Limit: 100
+2025-04-14 16:07:40,224 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 16:08:11,899 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 16:08:11,904 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:08:30,110 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: DELETED, Limit: 100
+2025-04-14 16:08:30,114 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:08:38,814 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: UPDATED, Limit: 100
+2025-04-14 16:08:38,816 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:10:47,041 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 16:10:47,045 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 16:24:04,818 - __main__ - INFO - Processing signature operation. Data: {'threat_name': 'EICAR-Test-Signature', 'first_bytes': 'X5O!P%@', 'remainder_hash': '44d88612fea8a8f36de82e1278abb02f', 'remainder_length': 68, 'file_type': 'test', 'offset_start': 0, 'offset_end': 80, 'status': 'ACTUAL'}
+2025-04-14 16:24:04,824 - __main__ - INFO - Successfully processed signature. ID: 02cd3f4f-1026-482f-af40-4ac42255056b
+2025-04-14 17:55:49,870 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 17:55:49,875 - __main__ - INFO - Successfully retrieved 3 files from database
+2025-04-14 17:56:05,791 - __main__ - INFO - Starting file scan. File ID: 276a88fe-39bd-45a9-bf9e-f1d0a4106e81, Signature ID: None
+2025-04-14 17:56:05,796 - __main__ - INFO - Scan completed successfully for file 276a88fe-39bd-45a9-bf9e-f1d0a4106e81
+2025-04-14 17:56:13,965 - __main__ - INFO - Starting file scan. File ID: 276a88fe-39bd-45a9-bf9e-f1d0a4106e81, Signature ID: None
+2025-04-14 17:56:13,971 - __main__ - INFO - Scan completed successfully for file 276a88fe-39bd-45a9-bf9e-f1d0a4106e81
+2025-04-14 17:56:32,398 - __main__ - INFO - Starting file scan. File ID: 276a88fe-39bd-45a9-bf9e-f1d0a4106e81, Signature ID: 3bfc313b-6183-4361-a5d8-31777b241be0
+2025-04-14 17:56:32,403 - __main__ - INFO - Scan completed successfully for file 276a88fe-39bd-45a9-bf9e-f1d0a4106e81
+2025-04-14 17:56:56,738 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 17:56:56,742 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 17:57:02,759 - __main__ - INFO - Request received for history. Signature ID: b2047e6e-08f5-4699-a454-e7f653d792f7, Limit: 100
+2025-04-14 17:57:02,764 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 17:57:07,527 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 17:57:07,531 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 18:01:38,735 - __main__ - INFO - Request received for audit logs. Entity type: 02cd3f4f-1026-482f-af40-4ac42255056b, Operation type: None, Limit: 100
+2025-04-14 18:01:38,738 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 18:01:47,127 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: 02cd3f4f-1026-482f-af40-4ac42255056b, Limit: 100
+2025-04-14 18:01:47,132 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 18:11:27,388 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 18:11:27,393 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 18:11:29,519 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 18:11:29,523 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 18:36:30,475 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 18:36:30,480 - __main__ - INFO - Successfully retrieved 0 audit log entries
+2025-04-14 20:01:20,484 - __main__ - INFO - Проверка и создание базы данных...
+2025-04-14 20:01:20,589 - __main__ - INFO - Инициализация подключения к базе...
+2025-04-14 20:01:20,643 - __main__ - INFO - Создание таблиц...
+2025-04-14 20:01:20,762 - __main__ - INFO - База данных готова!
+2025-04-14 20:02:23,092 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:02:23,103 - __main__ - INFO - Successfully retrieved 3 files from database
+2025-04-14 20:03:43,894 - __main__ - INFO - Starting file upload. Filename: file5.txt
+2025-04-14 20:03:43,896 - __main__ - INFO - Temporary file saved. Size: 50 bytes
+2025-04-14 20:03:43,937 - __main__ - INFO - File successfully processed. UUID: 77741a43-8040-4a6c-aeb0-7dd1bcdbafff
+2025-04-14 20:03:45,989 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:03:46,006 - __main__ - INFO - Successfully retrieved 4 files from database
+2025-04-14 20:04:26,632 - __main__ - INFO - Request received for file info. File ID: 77741a43-8040-4a6c-aeb0-7dd1bcdbafff
+2025-04-14 20:04:26,650 - __main__ - INFO - Successfully retrieved file info. File: file5.txt, Size: 50 bytes
+2025-04-14 20:04:35,321 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:04:35,332 - __main__ - INFO - Successfully retrieved 4 files from database
+2025-04-14 20:04:40,214 - __main__ - INFO - Request received for file info. File ID: b470dadd-609d-4b65-a5cb-5ed8f3ae68da
+2025-04-14 20:04:40,226 - __main__ - INFO - Successfully retrieved file info. File: file4.txt, Size: 36 bytes
+2025-04-14 20:04:50,264 - __main__ - INFO - Starting file scan. File ID: 77741a43-8040-4a6c-aeb0-7dd1bcdbafff, Signature ID: None
+2025-04-14 20:04:50,283 - __main__ - INFO - Scan completed successfully for file 77741a43-8040-4a6c-aeb0-7dd1bcdbafff
+2025-04-14 20:05:04,911 - __main__ - INFO - Request received for file info. File ID: 77741a43-8040-4a6c-aeb0-7dd1bcdbafff
+2025-04-14 20:05:04,930 - __main__ - INFO - Successfully retrieved file info. File: file5.txt, Size: 50 bytes
+2025-04-14 20:05:09,560 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:05:09,579 - __main__ - INFO - Successfully retrieved 4 files from database
+2025-04-14 20:05:14,753 - __main__ - INFO - Request received for actual signatures. Since filter: None
+2025-04-14 20:05:14,777 - __main__ - INFO - Successfully retrieved 3 actual signatures
+2025-04-14 20:05:38,358 - __main__ - INFO - Request received for actual signatures. Since filter: None
+2025-04-14 20:05:38,371 - __main__ - INFO - Successfully retrieved 3 actual signatures
+2025-04-14 20:06:08,536 - __main__ - INFO - Request received for history. Signature ID: None, Limit: 100
+2025-04-14 20:06:08,544 - __main__ - INFO - Successfully retrieved 2 history entries
+2025-04-14 20:06:21,668 - __main__ - INFO - Request received for history. Signature ID: 3ed6c2e2-45b4-4278-9148-70795612e68b, Limit: 100
+2025-04-14 20:06:21,730 - __main__ - INFO - Successfully retrieved 1 history entries
+2025-04-14 20:06:25,697 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 20:06:25,708 - __main__ - INFO - Successfully retrieved 6 audit log entries
+2025-04-14 20:06:33,043 - __main__ - INFO - Request received for audit logs. Entity type: 3ed6c2e2-45b4-4278-9148-70795612e68b, Operation type: UPDATED, Limit: 100
+2025-04-14 20:06:33,049 - __main__ - INFO - Successfully retrieved 1 audit log entries
+2025-04-14 20:06:37,737 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:06:37,748 - __main__ - INFO - Successfully retrieved 4 files from database
+2025-04-14 20:08:00,655 - __main__ - INFO - Starting file upload. Filename: file1.txt
+2025-04-14 20:08:00,656 - __main__ - INFO - Temporary file saved. Size: 83 bytes
+2025-04-14 20:08:00,664 - __main__ - INFO - File successfully processed. UUID: 6c7bd24b-ab90-4730-8f57-dc367eabb95a
+2025-04-14 20:08:14,517 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:08:14,527 - __main__ - INFO - Successfully retrieved 5 files from database
+2025-04-14 20:09:59,770 - __main__ - INFO - Request received for actual signatures. Since filter: None
+2025-04-14 20:09:59,779 - __main__ - INFO - Successfully retrieved 3 actual signatures
+2025-04-14 20:10:15,681 - __main__ - INFO - Request received for actual signatures. Since filter: 2025-04-13T20:00:00
+2025-04-14 20:10:15,688 - __main__ - INFO - Successfully retrieved 3 actual signatures
+2025-04-14 20:11:03,915 - __main__ - INFO - Request received for audit logs. Entity type: None, Operation type: None, Limit: 100
+2025-04-14 20:11:03,926 - __main__ - INFO - Successfully retrieved 6 audit log entries
+2025-04-14 20:16:00,293 - __main__ - INFO - Starting to fetch all files from database
+2025-04-14 20:16:00,299 - __main__ - INFO - Successfully retrieved 5 files from database
+2025-04-14 20:16:04,004 - __main__ - INFO - Request received for file info. File ID: 77741a43-8040-4a6c-aeb0-7dd1bcdbafff
+2025-04-14 20:16:04,017 - __main__ - INFO - Successfully retrieved file info. File: file5.txt, Size: 50 bytes
